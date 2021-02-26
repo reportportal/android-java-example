@@ -1,7 +1,5 @@
 package com.epam.test.android.espresso.junit5;
 
-import com.epam.reportportal.junit5.ReportPortalExtension;
-
 import org.junit.runner.Result;
 import org.junit.runner.notification.RunListener;
 
@@ -14,7 +12,10 @@ public class AndroidReportPortalRunListener extends RunListener {
 
     @Override
     public void testRunFinished(Result result) {
-        EXTENSIONS.iterator().forEachRemaining(ReportPortalExtension::finish);
+        AndroidReportPortalExtension e;
+        while ((e = EXTENSIONS.poll()) != null) {
+            e.finish();
+        }
     }
 
     public static void addLaunchFinisher(AndroidReportPortalExtension extension) {

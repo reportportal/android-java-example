@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.epam.test">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" package="com.epam.test">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:usesCleartextTraffic="true" />
+    <!-- Allow plaintext traffic and disable backups for debug runs-->
+    <application
+        android:allowBackup="false"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup"/>
 
 </manifest>
