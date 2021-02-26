@@ -11,24 +11,28 @@ import com.epam.test.ui.login.LoginActivity;
 
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.mannodermaus.junit5.ActivityScenarioExtension;
 
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
-@ExtendWith(AndroidReportPortalExtension.class)
 public class UiTest {
+    private static final Logger LOGGER = LoggerFactory.getLogger(UiTest.class);
+
     @RegisterExtension
     final ActivityScenarioExtension<LoginActivity> scenarioExtension = ActivityScenarioExtension.launch(LoginActivity.class);
 
     @Test
     public void test_short_password_error() {
         ActivityScenario<LoginActivity> scenario = scenarioExtension.getScenario();
+        LOGGER.info("Starting UI test");
         Espresso.onView(withId(R.id.username)).perform(ViewActions.typeText("Steve"));
         Espresso.onView(withId(R.id.password)).perform(ViewActions.typeText("test"));
         Espresso.onView(withId(R.id.login)).perform(ViewActions.click());
         Espresso.onView(withId(R.id.password)).check(ViewAssertions.matches(ViewMatchers.hasErrorText(Matchers.equalTo("Password must be >5 characters"))));
+        LOGGER.info("UI test finished");
     }
 }
