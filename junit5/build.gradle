@@ -2,6 +2,10 @@ plugins {
     id 'com.android.test'
 }
 
+repositories {
+    maven { url "http://dl.bintray.com/epam/reportportal" }
+}
+
 android {
     targetProjectPath ':app'
 
@@ -14,8 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument("runnerBuilder", "de.mannodermaus.junit5.AndroidJUnit5Builder")
+        testInstrumentationRunner "com.epam.test.android.espresso.junit5.AndroidJUnit5ReportPortalRunner"
         consumerProguardFiles "consumer-rules.pro"
 
         multiDexEnabled true
@@ -57,7 +60,7 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-java-junit5:5.1.0-ALPHA-7') {
+    implementation ('com.epam.reportportal:agent-java-junit5:5.1.0-ALPHA-8') {
         exclude group: 'org.aspectj'
     }
     implementation ('com.epam.reportportal:logger-java-logback:5.0.3') {
