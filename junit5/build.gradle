@@ -57,7 +57,6 @@ dependencies {
 
     // Report Portal libraries
     implementation ('com.epam.reportportal:agent-android-junit5:5.1.0-BETA-4') {
-        transitive = true
         exclude group: 'org.aspectj'
     }
     implementation ('com.epam.reportportal:logger-java-logback:5.0.3') {
