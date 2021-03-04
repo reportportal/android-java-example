@@ -1,1 +1,1 @@
-com.epam.test.android.espresso.junit5.AndroidReportPortalExtension
+com.epam.reportportal.android.junit5.AndroidReportPortalExtension
