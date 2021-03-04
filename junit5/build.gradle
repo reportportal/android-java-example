@@ -72,6 +72,9 @@ dependencies {
     implementation 'de.mannodermaus.junit5:android-test-runner:1.2.1'
 
     // JUnit5 libraries, 'junit-jupiter-api' is inherited from agent
-    implementation "org.junit.platform:junit-platform-runner:${project.junit5_runner_version}"
-    implementation "org.junit.jupiter:junit-jupiter-engine:${project.junit5_version}"
+    implementation "org.junit.platform:junit-platform-runner:${project.junit5RunnerVersion}"
+    implementation "org.junit.jupiter:junit-jupiter-engine:${project.junit5Version}"
+
+    // JUnit5 (Optional) If you need "Parameterized Tests"
+    implementation "org.junit.jupiter:junit-jupiter-params:${project.junit5Version}"
 }
