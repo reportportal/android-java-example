@@ -5,6 +5,8 @@ import androidx.test.espresso.Espresso;
 import androidx.test.espresso.action.ViewActions;
 import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
+import androidx.test.runner.screenshot.ScreenCapture;
+import androidx.test.runner.screenshot.Screenshot;
 
 import com.epam.test.R;
 import com.epam.test.ui.login.LoginActivity;
@@ -14,6 +16,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Base64;
 
 import de.mannodermaus.junit5.ActivityScenarioExtension;
 
@@ -34,5 +39,15 @@ public class UiTest {
         Espresso.onView(withId(R.id.login)).perform(ViewActions.click());
         Espresso.onView(withId(R.id.password)).check(ViewAssertions.matches(ViewMatchers.hasErrorText(Matchers.equalTo("Password must be >5 characters"))));
         LOGGER.info("UI test finished");
+
+        // Take a screenshot
+        ScreenCapture capture = Screenshot.capture();
+        ByteArrayOutputStream screenshotBytes = new ByteArrayOutputStream();
+        capture.getBitmap().compress(capture.getFormat(), 100, screenshotBytes);
+        LOGGER.info(
+                "RP_MESSAGE#BASE64#{}#{}",
+                Base64.getEncoder().encodeToString(screenshotBytes.toByteArray()),
+                "Screenshot"
+        );
     }
 }

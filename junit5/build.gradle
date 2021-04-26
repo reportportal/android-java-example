@@ -2,10 +2,6 @@ plugins {
     id 'com.android.test'
 }
 
-repositories {
-    maven { url "https://dl.bintray.com/epam/reportportal" }
-}
-
 android {
     targetProjectPath ':app'
 
@@ -58,7 +54,9 @@ dependencies {
     // Report Portal libraries
     implementation ('com.epam.reportportal:agent-android-junit5:5.1.0-BETA-5') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
+        exclude module: 'tika-core'
     }
+    implementation 'org.apache.tika:tika-core:1.12'
     implementation ('com.epam.reportportal:logger-java-logback:5.0.3') {
         exclude group: 'com.epam.reportportal'
     }
