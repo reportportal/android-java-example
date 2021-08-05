@@ -52,11 +52,9 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-android-junit5:5.1.0-BETA-5') {
+    implementation ('com.epam.reportportal:agent-android-junit5:5.1.0-RC-2') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
-        exclude module: 'tika-core'
     }
-    implementation 'org.apache.tika:tika-core:1.12'
     implementation ('com.epam.reportportal:logger-java-logback:5.0.3') {
         exclude group: 'com.epam.reportportal'
     }
