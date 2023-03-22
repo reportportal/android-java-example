@@ -10,12 +10,9 @@ android {
 
     defaultConfig {
         minSdkVersion 26
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion project.compileSdkVersion
 
         testInstrumentationRunner "com.epam.reportportal.android.junit5.AndroidJUnit5ReportPortalRunner"
-        consumerProguardFiles "consumer-rules.pro"
 
         multiDexEnabled true
     }
@@ -28,8 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     testOptions {
@@ -38,34 +35,44 @@ android {
 
     packagingOptions {
         exclude "META-INF/LICENSE*"
+        exclude 'META-INF/INDEX.LIST'
     }
 }
 
 dependencies {
+    constraints {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+            because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
+        }
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+            because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
+        }
+    }
+
     implementation project(':app')
 
     // Android libraries for testing Activities
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
 
     // Android Espresso libraries
-    implementation 'androidx.test.ext:junit:1.1.2'
-    implementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'androidx.test.ext:junit:1.1.5'
+    implementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-android-junit5:5.1.0-RC-3') {
+    implementation ('com.epam.reportportal:agent-android-junit5:5.1.1') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
     }
-    implementation ('com.epam.reportportal:logger-java-logback:5.1.1') {
+    implementation ('com.epam.reportportal:logger-java-logback:5.1.4') {
         exclude group: 'com.epam.reportportal'
     }
 
-    // Logging support
-    implementation 'ch.qos.logback:logback-classic:1.2.10'
+    // Logging support, newer versions of logback do not support Android
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
 
     // android-junit5 necessary libraries
-    implementation 'androidx.test:runner:1.3.0'
-    implementation 'de.mannodermaus.junit5:android-test-core:1.2.1'
-    implementation 'de.mannodermaus.junit5:android-test-runner:1.2.1'
+    implementation 'androidx.test:runner:1.5.2'
+    implementation 'de.mannodermaus.junit5:android-test-core:1.3.0'
+    implementation 'de.mannodermaus.junit5:android-test-runner:1.3.0'
 
     // JUnit5 libraries, 'junit-jupiter-api' is inherited from agent
     implementation "org.junit.platform:junit-platform-runner:${project.junit5RunnerVersion}"
