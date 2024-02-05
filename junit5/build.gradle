@@ -6,8 +6,8 @@ android {
     targetProjectPath ':app'
 
     compileSdkVersion = rootProject.compileSdkVersion.toInteger()
-    buildToolsVersion = rootProject.buildToolsVersion
 
+    namespace 'com.epam.test.android.espresso.junit5'
     defaultConfig {
         minSdkVersion 26
         targetSdkVersion project.compileSdkVersion
@@ -41,10 +41,10 @@ android {
 
 dependencies {
     constraints {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0") {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlin_version}") {
             because("kotlin-stdlib-jdk7 is now a part of kotlin-stdlib")
         }
-        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0") {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}") {
             because("kotlin-stdlib-jdk8 is now a part of kotlin-stdlib")
         }
     }
@@ -59,15 +59,15 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-android-junit5:5.1.1') {
+    implementation ('com.epam.reportportal:agent-android-junit5:5.2.0') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
     }
-    implementation ('com.epam.reportportal:logger-java-logback:5.1.4') {
+    implementation ('com.epam.reportportal:logger-java-logback:5.2.0') {
         exclude group: 'com.epam.reportportal'
     }
 
     // Logging support, newer versions of logback do not support Android
-    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'ch.qos.logback:logback-classic:1.3.12'
 
     // android-junit5 necessary libraries
     implementation 'androidx.test:runner:1.5.2'

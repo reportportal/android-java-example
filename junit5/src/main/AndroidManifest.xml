@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.epam.test.android.espresso.junit5"
     android:versionCode="1"
     android:versionName="1.0">
 
-    <application tools:replace="label" android:label="Android Junit 5 Tests" />
+    <application android:label="Android Junit 5 Tests" android:icon="@mipmap/ic_launcher" />
 </manifest>
