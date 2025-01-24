@@ -59,13 +59,13 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-android-junit5:5.2.3') {
+    implementation ('com.epam.reportportal:agent-android-junit5:5.2.4') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
     }
-    implementation 'com.epam.reportportal:logger-java-logback:5.2.2'
+    implementation 'com.epam.reportportal:logger-java-logback:5.2.3'
 
     // Logging support, newer versions of logback do not support Android
-    implementation 'ch.qos.logback:logback-classic:1.3.12'
+    implementation 'ch.qos.logback:logback-classic:1.3.15'
 
     // android-junit5 necessary libraries
     implementation 'androidx.test:runner:1.5.2'
