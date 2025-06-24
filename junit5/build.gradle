@@ -3,9 +3,9 @@ plugins {
 }
 
 android {
-    targetProjectPath ':app'
-
     compileSdkVersion = rootProject.compileSdkVersion.toInteger()
+
+    targetProjectPath ':app'
 
     namespace 'com.epam.test.android.espresso.junit5'
     defaultConfig {
@@ -13,8 +13,6 @@ android {
         targetSdkVersion project.compileSdkVersion
 
         testInstrumentationRunner "com.epam.reportportal.android.junit5.AndroidJUnit5ReportPortalRunner"
-
-        multiDexEnabled true
     }
 
     buildTypes {
@@ -25,8 +23,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     testOptions {
@@ -59,10 +57,10 @@ dependencies {
     implementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Report Portal libraries
-    implementation ('com.epam.reportportal:agent-android-junit5:5.2.4') {
+    implementation ('com.epam.reportportal:agent-android-junit5:5.3.0') {
         exclude group: 'org.aspectj' // AspectJ is already included by Android
     }
-    implementation 'com.epam.reportportal:logger-java-logback:5.2.3'
+    implementation 'com.epam.reportportal:logger-java-logback:5.3.0'
 
     // Logging support, newer versions of logback do not support Android
     implementation 'ch.qos.logback:logback-classic:1.3.15'
